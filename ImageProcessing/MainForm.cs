@@ -15,8 +15,13 @@ namespace ImageProcessing
         public MainForm()
         {
             InitializeComponent();
+
             PicOriginal.SizeMode = PictureBoxSizeMode.StretchImage;
+
             PicLater.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            TransformTypes.DataSource = Enum.GetValues(typeof(TransformStyle));
+            TransformTypes.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
@@ -29,29 +34,37 @@ namespace ImageProcessing
             }
         }
 
-        private static void ConvertBmp(Bitmap bitmap)
-        {
-            for (int i = 0; i < bitmap.Width; i++)
-            {
-                for (int j = 0; j < bitmap.Height; j++)
-                {
-                    Color pixelColor = bitmap.GetPixel(i, j);
-                    int R, G, B;
-                    R = pixelColor.R;
-                    G = pixelColor.G;
-                    B = pixelColor.B;
-                    var val = (byte)(R * 0.2126 + G * 0.7152 + B * 0.0722);
-                    R = B = G = val;
-                    bitmap.SetPixel(i, j, Color.FromArgb(R, B, G));
-                }
-            }
-        }
-
         private void BtnTransform_Click(object sender, EventArgs e)
         {
-            var imageToEdit = PicOriginal.Image as Bitmap;
-            ConvertBmp(imageToEdit);
+            Bitmap imageToEdit = (Bitmap)PicOriginal.Image.Clone();
+            var Selected = (TransformStyle)TransformTypes.SelectedValue;
+            bgWorkerMain.RunWorkerAsync(argument: new object[] { imageToEdit, Selected });
+        }
+
+        private void bgWorkerMain_DoWork(object sender, DoWorkEventArgs e)
+        {
+            object[] args = (object[])e.Argument;
+            Bitmap imageToEdit = (Bitmap)args[0];
+            switch ((TransformStyle)args[1])
+            {
+                case TransformStyle.GrayScale:
+                    ImageProcessor.ConvertToGrascale(imageToEdit);
+                    break;
+
+                case TransformStyle.Negative:
+                    ImageProcessor.ConvertToNegative(imageToEdit);
+                    break;
+
+                default:
+                    break;
+            }
             PicLater.Image = imageToEdit;
         }
+    }
+
+    public enum TransformStyle
+    {
+        GrayScale,
+        Negative
     }
 }

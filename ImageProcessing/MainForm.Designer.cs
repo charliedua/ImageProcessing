@@ -32,6 +32,8 @@
             this.PicLater = new System.Windows.Forms.PictureBox();
             this.BtnImport = new System.Windows.Forms.Button();
             this.BtnTransform = new System.Windows.Forms.Button();
+            this.TransformTypes = new System.Windows.Forms.ComboBox();
+            this.bgWorkerMain = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.PicOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLater)).BeginInit();
             this.SuspendLayout();
@@ -64,19 +66,32 @@
             // 
             // BtnTransform
             // 
-            this.BtnTransform.Location = new System.Drawing.Point(557, 349);
+            this.BtnTransform.Location = new System.Drawing.Point(542, 373);
             this.BtnTransform.Name = "BtnTransform";
-            this.BtnTransform.Size = new System.Drawing.Size(125, 57);
+            this.BtnTransform.Size = new System.Drawing.Size(140, 33);
             this.BtnTransform.TabIndex = 3;
             this.BtnTransform.Text = "Transform";
             this.BtnTransform.UseVisualStyleBackColor = true;
             this.BtnTransform.Click += new System.EventHandler(this.BtnTransform_Click);
+            // 
+            // TransformTypes
+            // 
+            this.TransformTypes.FormattingEnabled = true;
+            this.TransformTypes.Location = new System.Drawing.Point(458, 322);
+            this.TransformTypes.Name = "TransformTypes";
+            this.TransformTypes.Size = new System.Drawing.Size(311, 21);
+            this.TransformTypes.TabIndex = 4;
+            // 
+            // bgWorkerMain
+            // 
+            this.bgWorkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerMain_DoWork);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TransformTypes);
             this.Controls.Add(this.BtnTransform);
             this.Controls.Add(this.BtnImport);
             this.Controls.Add(this.PicLater);
@@ -95,6 +110,8 @@
         private System.Windows.Forms.PictureBox PicLater;
         private System.Windows.Forms.Button BtnImport;
         private System.Windows.Forms.Button BtnTransform;
+        private System.Windows.Forms.ComboBox TransformTypes;
+        private System.ComponentModel.BackgroundWorker bgWorkerMain;
     }
 }
 
