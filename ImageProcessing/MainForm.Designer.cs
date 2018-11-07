@@ -56,9 +56,9 @@
             // 
             // BtnImport
             // 
-            this.BtnImport.Location = new System.Drawing.Point(105, 349);
+            this.BtnImport.Location = new System.Drawing.Point(125, 373);
             this.BtnImport.Name = "BtnImport";
-            this.BtnImport.Size = new System.Drawing.Size(125, 57);
+            this.BtnImport.Size = new System.Drawing.Size(124, 33);
             this.BtnImport.TabIndex = 2;
             this.BtnImport.Text = "Import";
             this.BtnImport.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@
             // TransformTypes
             // 
             this.TransformTypes.FormattingEnabled = true;
-            this.TransformTypes.Location = new System.Drawing.Point(458, 322);
+            this.TransformTypes.Location = new System.Drawing.Point(458, 337);
             this.TransformTypes.Name = "TransformTypes";
             this.TransformTypes.Size = new System.Drawing.Size(311, 21);
             this.TransformTypes.TabIndex = 4;
